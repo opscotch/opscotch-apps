@@ -49,6 +49,23 @@ Use `allowDeploymentAccess` to declare which deploymentId the lamdba payloads sh
 }
 ```
 
+## Release Links
+
+- Release: https://github.com/opscotch/opscotch-apps/releases/tag/opscotch-aws-lambda-1.0.0
+- Docker Image: https://github.com/orgs/opscotch/packages/container/package/opscotch-aws-lambda
+
+To use this as a docker image, here is an example Dockerfile:
+
+```Dockerfile
+FROM ghcr.io/opscotch/opscotch-aws-lambda:1.0.0 AS opscotch-aws-lambda
+FROM ghcr.io/opscotch/opscotch-agent:latest
+
+COPY --from=opscotch-aws-lambda /apps/opscotch-aws-lambda.oapp /apps/opscotch-aws-lambda
+
+# your custom bootstrap
+COPY bootstrap.json /config/bootstrap.json
+```
+
 ## Signing Public Keys
 
 | Key ID | Public Key |
