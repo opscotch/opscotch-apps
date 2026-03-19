@@ -2,6 +2,53 @@
 
 This package allows opscotch to run as a AWS lambda function.
 
+## Bootstrap details
+
+When using this as an AWS Lambda function it is critical that this app starts first.
+
+The `deferLoading` and `startupPriority` settings are critical.
+
+AWS will supply the `${AWS_LAMBDA_RUNTIME_API}`.
+
+Use `allowDeploymentAccess` to declare which deploymentId the lamdba payloads should be sent to. Use the "data.eventRouting" to declare which step to send the payload to.
+
+```
+{
+    "deferLoading" : "false",
+    "startupPriority": 1,
+    "deploymentId": "lambda",
+    "packaging": {
+        "packageId": "opscotch-aws-lambda",
+    },
+    "remoteConfiguration": "/apps/opscotch-aws-lambda.oapp",
+    "allowExternalHostAccess": [
+        {
+            "id": "aws-lambda-runtime-api",
+            "host": "http://${AWS_LAMBDA_RUNTIME_API}"
+        }
+    ],
+    "allowDeploymentAccess": [
+        {
+            "id": "aws-lambda-processor",
+            "access": "call",
+            "deploymentId": "your-processor"
+        }
+    ]
+    "data": {
+        "eventRouting": {
+            "apigw-v2": {
+                "deploymentAccessId": "aws-lambda-processor",
+                "stepId": "<your apigw-v2 step>"
+            },
+            "sqs": {
+                "deploymentAccessId": "aws-lambda-processor",
+                "stepId": "<your sqs step>"
+            }
+        }
+    }
+}
+```
+
 ## Signing Public Keys
 
 | Key ID | Public Key |
