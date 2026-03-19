@@ -74,6 +74,23 @@ Here is how you call an aws service:
 var response = context.sendToStep(`aws-services`, `sqs-request`, JSON.stringify( { aws_sqs_queue : 'test-queue', action : 'SendMessage', params : { MessageBody : `some body` } } ))
 ```
 
+## Release Links
+
+- Release: https://github.com/opscotch/opscotch-apps/releases/tag/opscotch-aws-services-1.0.0
+- Docker Image: https://github.com/orgs/opscotch/packages/container/package/opscotch-aws-services
+
+To use this as a docker image, here is an example Dockerfile:
+
+```Dockerfile
+FROM ghcr.io/opscotch/opscotch-aws-services:1.0.0 AS opscotch-aws-services
+FROM ghcr.io/opscotch/opscotch-agent:latest
+
+COPY --from=opscotch-aws-services /apps/opscotch-aws-services.oapp /apps/opscotch-aws-services
+
+# your custom bootstrap
+COPY bootstrap.json /config/bootstrap.json
+```
+
 ## Signing Public Keys
 
 | Key ID | Public Key |
