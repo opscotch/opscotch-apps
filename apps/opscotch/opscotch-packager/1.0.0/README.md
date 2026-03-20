@@ -2,6 +2,83 @@
 
 This produces opscotch packages.
 
+# Bootstrap detail
+
+`allowHttpServerAccess` allows for api access to the packager.
+`allowFileAccess` allows for access to resource directories, and when comparing workflows: workflow directories.
+
+These data structures wire in the resource and workflows directories
+```
+"data": {
+    "resourceIds": [
+        "communityResources",
+        "localResources",
+        "anotherLotOfResources"
+    ],
+    "workflowSourceIds": [
+        "compareWorkflow1",
+        "compareWorkflow2"
+    ]
+}
+```
+
+```
+{
+    "deploymentId": "opscotch-packager",
+    "remoteConfiguration": "/apps/opscotch-packager.oapp",
+    "persistenceRoot": "persistence",
+    "allowHttpServerAccess": [
+        {
+            "id": "api",
+            "port": 22222
+        }
+    ],
+    "allowFileAccess": [
+        {
+            "id": "communityResources",
+            "directoryOrFile": "/opscotch-community/resources",
+            "READ": true,
+            "LIST": true
+        },
+        {
+            "id": "localResources",
+            "directoryOrFile": "/localapp/resources",
+            "READ": true,
+            "LIST": true
+        },
+        {
+            "id": "anotherLotOfResources",
+            "directoryOrFile": "/localapp/moreResources",
+            "READ": true,
+            "LIST": true
+        },
+        {
+            "id": "compareWorkflow1",
+            "directoryOrFile": "/localapp/workflow1",
+            "READ": true,
+            "LIST": true
+        },
+        {
+            "id": "compareWorkflow2",
+            "directoryOrFile": "/localapp/workflow1",
+            "READ": true,
+            "LIST": true
+        }
+    ],
+    "data": {
+        "resourceIds": [
+            "communityResources",
+            "localResources",
+            "anotherLotOfResources"
+        ],
+        "workflowSourceIds": [
+            "compareWorkflow1",
+            "compareWorkflow2"
+        ]
+    }
+}
+```
+
 ## Release Links
 
 - Release: https://github.com/opscotch/opscotch-apps/releases/tag/opscotch-packager-1.0.0
