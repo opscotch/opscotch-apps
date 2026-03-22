@@ -2,6 +2,8 @@
 
 This produces opscotch packages.
 
+The API will start on port 39575.
+
 # Bootstrap detail
 
 `allowHttpServerAccess` allows for api access to the packager.
@@ -30,7 +32,7 @@ These data structures wire in the resource and workflows directories
     "allowHttpServerAccess": [
         {
             "id": "api",
-            "port": 22222
+            "port": 39575
         }
     ],
     "allowFileAccess": [
