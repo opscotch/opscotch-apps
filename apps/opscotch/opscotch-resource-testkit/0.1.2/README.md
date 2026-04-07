@@ -1,6 +1,6 @@
 # Opscotch Resource Testkit
 
-`ghcr.io/opscotch/opscotch-resource-testkit:latest` is a docker-first unit test environment for Opscotch JavaScript resources.
+`ghcr.io/opscotch/opscotch-resource-testkit:latest` is the published GHCR image for the Opscotch JavaScript resource unit test environment.
 
 This image is intended for fast authoring feedback when humans or AI need to test resource files directly without running the full Opscotch agent and testrunner harness.
 
