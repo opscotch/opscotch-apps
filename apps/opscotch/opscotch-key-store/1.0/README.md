@@ -54,6 +54,19 @@ provider-specific messages.
 
 ## Bootstrap responsibilities
 
+The key-store bootstrap must receive its seed and domain values from deployment
+secrets or environment substitution. Do not commit these values in bootstrap
+files. The supported variables are:
+
+- `OPSCOTCH_KEY_STORE_PUBLIC_SEED_HEX`
+- `OPSCOTCH_KEY_STORE_SECRET_SEED_HEX`
+- `OPSCOTCH_KEY_STORE_PUBLIC_DOMAIN`
+- `OPSCOTCH_KEY_STORE_SECRET_DOMAIN`
+
+Keep these values stable for an existing store. Changing a seed or domain
+prevents verification or decryption of records written with the previous
+configuration.
+
 Key-store bootstrap data supplies:
 
 - `publicKeyStoreSeedHex` and `publicKeyStoreDomain`: public-record integrity
