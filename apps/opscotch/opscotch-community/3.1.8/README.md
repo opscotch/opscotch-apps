@@ -4,6 +4,10 @@ This image packages the published Opscotch community resources tree at `/opscotc
 
 It is intended to be used as a base image or copy source by other Opscotch docker-only apps that need the standard resource set.
 
+## 3.1.8
+
+- Republish from opscotch-community branch `3.1.8` tip (apps-source#381).
+
 ## Release Links
 
 - Docker Image: `ghcr.io/opscotch/opscotch-community:3.1.8`
